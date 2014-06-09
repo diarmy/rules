@@ -27,13 +27,6 @@ class DataComparisonTest extends KernelTestBase {
   protected $conditionManager;
 
   /**
-   * The node storage.
-   *
-   * @var \Drupal\node\NodeStorage
-   */
-  protected $nodeStorage;
-
-  /**
    * {@inheritdoc}
    */
   public static function getInfo() {
