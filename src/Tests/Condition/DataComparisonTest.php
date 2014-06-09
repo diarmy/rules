@@ -104,7 +104,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_boolean_data)
       ->setContextValue('op', '==')
       ->setContextValue('value', $test_boolean_value);
-    $this->assertTRUE($condition->execute());
+    $this->assertTrue($condition->execute());
 
     // Test that when a boolean data does not equal a boolean value
     // and the operator is '==', FALSE is returned
@@ -113,7 +113,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_boolean_data)
       ->setContextValue('op', '==')
       ->setContextValue('value', $test_boolean_value);
-    $this->assertFALSE($condition->execute());
+    $this->assertFalse($condition->execute());
 
 
     // Test that when a data array contains the value string, and the operator 
@@ -124,7 +124,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_array_data)
       ->setContextValue('op', 'contains')
       ->setContextValue('value', $test_string_value);
-    $this->assertTRUE($condition->execute());
+    $this->assertTrue($condition->execute());
 
     // Test that when a data array does not contain the value array, and the
     // operator is 'CONTAINS', TRUE is returned
@@ -134,7 +134,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_array_data)
       ->setContextValue('op', 'contains')
       ->setContextValue('value', $test_array_value);
-    $this->assertFALSE($condition->execute());
+    $this->assertFalse($condition->execute());
 
     // Test that when the data string is 'IN' the value array, TRUE is returned
     $test_string_data = 'Llama';
@@ -143,7 +143,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_string_data)
       ->setContextValue('op', 'IN')
       ->setContextValue('value', $test_array_value);
-    $this->assertTRUE($condition->execute());
+    $this->assertTrue($condition->execute());
 
     // Test that when the data array is not in the value array, and the operator
     // is 'IN', FALSE is returned
@@ -153,7 +153,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_array_data)
       ->setContextValue('op', 'IN')
       ->setContextValue('value', $test_array_value);
-    $this->assertFALSE($condition->execute());
+    $this->assertFalse($condition->execute());
 
     // Test that when data is greater than value and operator is '>', 
     // TRUE is returned
@@ -163,7 +163,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_integer_data)
       ->setContextValue('op', '>')
       ->setContextValue('value', $test_integer_value);
-    $this->assertTRUE($condition->execute());
+    $this->assertTrue($condition->execute());
 
     // Test that when data is less than value and operator is '>', 
     // FALSE is returned
@@ -173,7 +173,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_integer_data)
       ->setContextValue('op', '>')
       ->setContextValue('value', $test_integer_value);
-    $this->assertFALSE($condition->execute());
+    $this->assertFalse($condition->execute());
 
     // Test that when data is less than value and operator is '<', 
     // TRUE is returned
@@ -183,7 +183,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_integer_data)
       ->setContextValue('op', '<')
       ->setContextValue('value', $test_integer_value);
-    $this->assertTRUE($condition->execute());
+    $this->assertTrue($condition->execute());
 
     // Test that when data is greater than value and operator is '<', 
     // FALSE is returned
@@ -193,7 +193,7 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('data', $test_integer_data)
       ->setContextValue('op', '<')
       ->setContextValue('value', $test_integer_value);
-    $this->assertFALSE($condition->execute());
+    $this->assertFalse($condition->execute());
 
   }
 
