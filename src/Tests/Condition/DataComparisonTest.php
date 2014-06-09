@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\rules\Tests\Plugin\Condition.
+ * Contains \Drupal\rules\Tests\Plugin\Condition\DataComparisonTest.
  */
 
 namespace Drupal\rules\Tests\Condition;
