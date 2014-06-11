@@ -49,7 +49,6 @@ class DataComparisonTest extends KernelTestBase {
    * Tests evaluating the condition.
    */
   public function testConditionEvaluation() {
-
     // Test that when the data string equals the value string and the operator
     // is '==', TRUE is returned
     $test_string_data = 'Llama';
@@ -88,7 +87,6 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('value', $test_string_value);
     $this->assertFalse($condition->execute());
 
-
     // Test that when both data and value are false booleans and the operator
     // is '==', TRUE is returned
     $test_boolean_data = FALSE;
@@ -107,7 +105,6 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('op', '==')
       ->setContextValue('value', $test_boolean_value);
     $this->assertFalse($condition->execute());
-
 
     // Test that when a data array contains the value string, and the operator 
     // is 'CONTAINS', TRUE is returned
