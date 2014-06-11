@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\rules\Plugin\Condition\NodeIsPromoted.
+ * Contains \Drupal\rules\Plugin\Condition\DataComparison.
  */
 
 namespace Drupal\rules\Plugin\Condition;
