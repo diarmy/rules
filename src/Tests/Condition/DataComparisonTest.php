@@ -10,7 +10,7 @@ namespace Drupal\rules\Tests\Condition;
 use Drupal\simpletest\KernelTestBase;
 
 /**
- * Tests the 'Data is' condition.
+ * Tests the 'Data comparison' condition.
  */
 class DataComparisonTest extends KernelTestBase {
 
