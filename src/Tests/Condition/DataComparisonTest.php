@@ -69,7 +69,7 @@ class DataComparisonTest extends KernelTestBase {
     $this->assertFalse($condition->execute());
 
     // Test that when the data string contains the value string, and the operator
-    //is 'CONTAINS', TRUE is returned
+    // is 'CONTAINS', TRUE is returned
     $test_string_data = 'Big Llama';
     $test_string_value = 'Llama';
     $condition = $this->conditionManager->createInstance('rules_data_comparison')
