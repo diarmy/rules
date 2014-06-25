@@ -184,7 +184,6 @@ class DataComparisonTest extends KernelTestBase {
       ->setContextValue('op', '<')
       ->setContextValue('value', $test_integer_value);
     $this->assertFalse($condition->execute());
-
   }
 
 }
