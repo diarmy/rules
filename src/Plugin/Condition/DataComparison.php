@@ -97,9 +97,6 @@ class DataComparison extends RulesConditionBase {
     $value = $this->getContextValue('value');
     
     switch ($op) {
-      default:
-      case '==':
-        return $this->isEqual($data, $value);
       case '<':
         return $this->isLessThan($data, $value);
       case '>':
@@ -109,6 +106,9 @@ class DataComparison extends RulesConditionBase {
         return $this->contains($data, $value);
       case 'IN':
         return $this->isIn($data, $value);
+      default:
+      case '==':
+        return $this->isEqual($data, $value);
     }
   }
 
