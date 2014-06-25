@@ -51,6 +51,46 @@ class DataComparison extends RulesConditionBase {
   /**
    * {@inheritdoc}
    */
+  protected function isEqual($data, $value) {
+    // In case both values evaluate to FALSE, further differentiate between
+    // NULL values and values evaluating to FALSE.
+    if (!$data && !$value) {
+      return (isset($data) && isset($value)) || (!isset($data) && !isset($value));
+    }
+    return $data == $value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function isLessThan($data, $value) {
+    return $data < $value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function isGreaterThan($data, $value) {
+    return $data > $value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function contains($data, $value) {
+    return is_string($data) && strpos($data, $value) !== FALSE || is_array($data) && in_array($value, $data);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function isIn($data, $value) {
+    return is_array($value) && in_array($data, $value);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function evaluate() {
     $data = $this->getContextValue('data');
     $op = $this->getContextValue('op');
@@ -59,21 +99,16 @@ class DataComparison extends RulesConditionBase {
     switch ($op) {
       default:
       case '==':
-        // In case both values evaluate to FALSE, further differentiate between
-        // NULL values and values evaluating to FALSE.
-        if (!$data && !$value) {
-          return (isset($data) && isset($value)) || (!isset($data) && !isset($value));
-        }
-        return $data == $value;
+        return $this->isEqual($data, $value);
       case '<':
-        return $data < $value;
+        return $this->isLessThan($data, $value);
       case '>':
-        return $data > $value;
+        return $this->isGreaterThan($data, $value);
         // Note: This is deprecated by the text comparison condition and IN below.
       case 'contains':
-        return is_string($data) && strpos($data, $value) !== FALSE || is_array($data) && in_array($value, $data);
+        return $this->contains($data, $value);
       case 'IN':
-        return is_array($value) && in_array($data, $value);
+        return $this->isIn($data, $value);
     }
   }
 
