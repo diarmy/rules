@@ -10,13 +10,13 @@ namespace Drupal\rules\Plugin\Action;
 use Drupal\rules\Engine\RulesActionBase;
 
 /**
- * Provides a 'Calculate a value' action.
+ * Provides a 'numeric calculation' action.
  *
  * @Action(
  *   id = "rules_data_calculate_value",
- *   label = @Translation("Calculate a value"),
+ *   label = @Translation("Calculates a numeric value"),
  *   context = {
- *     "input_1" = @ContextDefinition("decimal",
+ *     "input_1" = @ContextDefinition("float",
  *       label = @Translation("Input value 1"),
  *       description = @Translation("The first input value for the calculation.")
  *     ),
@@ -24,7 +24,7 @@ use Drupal\rules\Engine\RulesActionBase;
  *       label = @Translation("Operator"),
  *       description = @Translation("The calculation operator.")
  *     ),
- *     "input_2" = @ContextDefinition("decimal",
+ *     "input_2" = @ContextDefinition("float",
  *       label = @Translation("Input value 2"),
  *       description = @Translation("The second input value for the calculation.")
  *     )
@@ -45,7 +45,7 @@ class DataCalculateValue extends RulesActionBase {
    * {@inheritdoc}
    */
   public function summary() {
-    return $this->t('Calculate a value');
+    return $this->t('Calculate a numeric value');
   }
 
   /**
