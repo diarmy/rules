@@ -30,7 +30,7 @@ use Drupal\rules\Engine\RulesActionBase;
  *     )
  *   },
  *  provides = {
- *     "result" = @ContextDefinition("decimal",
+ *     "result" = @ContextDefinition("float",
  *       label = @Translation("Calculated value")
  *     )
  *   }
