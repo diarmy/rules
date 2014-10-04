@@ -72,8 +72,8 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
    * @covers ::execute()
    */
   public function testSubtractionAction() {
-    $input_1 = rand();
-    $input_2 = rand();
+    $input_1 = mt_rand();
+    $input_2 = mt_rand();
     $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
       ->setContextValue('op', $this->getTypedData('string', '-'))
       ->setContextValue('input_2', $this->getTypedData('float', $input_2));
@@ -88,8 +88,8 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
    * @covers ::execute()
    */
   public function testMultiplicationAction() {
-    $input_1 = rand();
-    $input_2 = rand();
+    $input_1 = mt_rand();
+    $input_2 = mt_rand();
     $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
       ->setContextValue('op', $this->getTypedData('string', '*'))
       ->setContextValue('input_2', $this->getTypedData('float', $input_2));
@@ -104,8 +104,8 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
    * @covers ::execute()
    */
   public function testDivisionAction() {
-    $input_1 = rand();
-    $input_2 = rand();
+    $input_1 = mt_rand();
+    $input_2 = mt_rand();
     $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
       ->setContextValue('op', $this->getTypedData('string', '/'))
       ->setContextValue('input_2', $this->getTypedData('float', $input_2));
@@ -120,8 +120,8 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
    * @covers ::execute()
    */
   public function testMinimumAction() {
-    $input_1 = rand();
-    $input_2 = rand();
+    $input_1 = mt_rand();
+    $input_2 = mt_rand();
     $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
       ->setContextValue('op', $this->getTypedData('string', 'min'))
       ->setContextValue('input_2', $this->getTypedData('float', $input_2));
@@ -136,8 +136,8 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
    * @covers ::execute()
    */
   public function testMaximumAction() {
-    $input_1 = rand();
-    $input_2 = rand();
+    $input_1 = mt_rand();
+    $input_2 = mt_rand();
     $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
       ->setContextValue('op', $this->getTypedData('string', 'max'))
       ->setContextValue('input_2', $this->getTypedData('float', $input_2));
