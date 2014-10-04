@@ -31,7 +31,7 @@ use Drupal\rules\Engine\RulesActionBase;
  *   },
  *  provides = {
  *     "result" = @ContextDefinition("float",
- *       label = @Translation("Calculated value")
+ *       label = @Translation("Calculated result")
  *     )
  *   }
  * )

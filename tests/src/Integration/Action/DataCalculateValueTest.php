@@ -14,7 +14,7 @@ use Drupal\Tests\rules\Unit\RulesUnitTestBase;
 
 /**
  * @coversDefaultClass \Drupal\rules\Plugin\Action\DataCalculateValue
- * @group rules_action
+ * @group rules_actions
  */
 class DataCalculateValueTest extends RulesIntegrationTestBase {
 
@@ -35,7 +35,7 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
       'input_1' => new ContextDefinition('float'),
       'op' => new ContextDefinition('string'),
       'input_2' => new ContextDefinition('float'),
-    ]]);
+    ], 'provides' => ['result' => new ContextDefinition('float')]]);
 
     $this->action->setStringTranslation($this->getMockStringTranslation());
     $this->action->setTypedDataManager($this->getMockTypedDataManager());
@@ -51,46 +51,98 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
   }
 
   /**
-   * Tests the action execution.
+   * Tests the addition of two numeric values.
    *
    * @covers ::execute()
    */
-  public function testActionExecution() {
+  public function testAdditionAction() {
     $input_1 = mt_rand();
     $input_2 = mt_rand();
-    $operations = array(
-      array(
-        'op' => '+',
-        'expected_value' => $input_1 + $input_2,
-      ),
-      array(
-        'op' => '-',
-        'expected_value' => $input_1 - $input_2,
-      ),
-      array(
-        'op' => '*',
-        'expected_value' => $input_1 * $input_2,
-      ),
-      array(
-        'op' => '/',
-        'expected_value' => $input_1 / $input_2,
-      ),
-      array(
-        'op' => 'min',
-        'expected_value' => min($input_1, $input_2),
-      ),
-      array(
-        'op' => 'max',
-        'expected_value' => max($input_1, $input_2),
-      ),
-    );
-    foreach ($operations as $operation) {
-      $this->action->setContextValue('input_1', $this->getTypedData($input_1))
-        ->setContextValue('op', $this->getTypedData($operation['op']))
-        ->setContextValue('input_2', $this->getTypedData($input_2));
+    $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
+      ->setContextValue('op', $this->getTypedData('string', '+'))
+      ->setContextValue('input_2', $this->getTypedData('float', $input_2));
+    $this->action->execute();
+    $result = $this->action->getProvided('result')->getContextValue();
+    $this->assertEquals($input_1 + $input_2, $result, "Addition calculation correct");
+  }
 
-      $this->action->execute();
-      $this->assertEquals($operation['expected_value'], $this->action->getProvided('result'), "Action for calculating values of {$input_1} {$operation['op']} {$input_2}.");
-    }
+  /**
+   * Tests the subtraction of one numeric value from another.
+   *
+   * @covers ::execute()
+   */
+  public function testSubtractionAction() {
+    $input_1 = rand();
+    $input_2 = rand();
+    $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
+      ->setContextValue('op', $this->getTypedData('string', '-'))
+      ->setContextValue('input_2', $this->getTypedData('float', $input_2));
+    $this->action->execute();
+    $result = $this->action->getProvided('result')->getContextValue();
+    $this->assertEquals($input_1 - $input_2, $result, "Subtraction calculation correct");
+  }
+
+  /**
+   * Tests the multiplication of one numeric by another.
+   *
+   * @covers ::execute()
+   */
+  public function testMultiplicationAction() {
+    $input_1 = rand();
+    $input_2 = rand();
+    $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
+      ->setContextValue('op', $this->getTypedData('string', '*'))
+      ->setContextValue('input_2', $this->getTypedData('float', $input_2));
+    $this->action->execute();
+    $result = $this->action->getProvided('result')->getContextValue();
+    $this->assertEquals($input_1 * $input_2, $result, "Subtraction calculation correct");
+  }
+
+  /**
+   * Tests the division of one numeric by another.
+   *
+   * @covers ::execute()
+   */
+  public function testDivisionAction() {
+    $input_1 = rand();
+    $input_2 = rand();
+    $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
+      ->setContextValue('op', $this->getTypedData('string', '/'))
+      ->setContextValue('input_2', $this->getTypedData('float', $input_2));
+    $this->action->execute();
+    $result = $this->action->getProvided('result')->getContextValue();
+    $this->assertEquals($input_1 / $input_2, $result, "Subtraction calculation correct");
+  }
+
+  /**
+   * Tests the use of php's min function for 2 input values
+   *
+   * @covers ::execute()
+   */
+  public function testMinimumAction() {
+    $input_1 = rand();
+    $input_2 = rand();
+    $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
+      ->setContextValue('op', $this->getTypedData('string', 'min'))
+      ->setContextValue('input_2', $this->getTypedData('float', $input_2));
+    $this->action->execute();
+    $result = $this->action->getProvided('result')->getContextValue();
+    $this->assertEquals(min($input_1, $input_2), $result, "Min calculation correct");
+  }
+
+  /**
+   * Tests the use of php's max function for 2 input values
+   *
+   * @covers ::execute()
+   */
+  public function testMaximumAction() {
+    $input_1 = rand();
+    $input_2 = rand();
+    $this->action->setContextValue('input_1', $this->getTypedData('float', $input_1))
+      ->setContextValue('op', $this->getTypedData('string', 'max'))
+      ->setContextValue('input_2', $this->getTypedData('float', $input_2));
+    $this->action->execute();
+    $result = $this->action->getProvided('result')->getContextValue();
+    $this->assertEquals(max($input_1, $input_2), $result, "Max calculation correct");
   }
 }
